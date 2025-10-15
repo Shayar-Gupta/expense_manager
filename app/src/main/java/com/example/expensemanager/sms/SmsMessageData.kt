@@ -6,3 +6,4 @@ data class SmsMessageData(
     val body: String,
     val dateMillis: Long
 )
+

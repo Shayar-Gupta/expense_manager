@@ -2,7 +2,6 @@ package com.example.expensemanager.sms
 
 import android.content.Context
 import android.provider.Telephony
-import com.example.expensemanager.parser.SmsRaw
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -11,9 +10,9 @@ object SmsReader {
      * Read SMS from inbox using Telephony provider.
      * Returns newest-first ordering.
      */
-    suspend fun readAllMessages(context: Context, sinceMillis: Long? = null): List<SmsRaw> =
+    suspend fun readAllMessages(context: Context, sinceMillis: Long? = null): List<SmsMessageData> =
         withContext(Dispatchers.IO) {
-            val list = mutableListOf<SmsRaw>()
+            val list = mutableListOf<SmsMessageData>()
             val uri = Telephony.Sms.Inbox.CONTENT_URI
             val projection = arrayOf(Telephony.Sms._ID, Telephony.Sms.ADDRESS, Telephony.Sms.BODY, Telephony.Sms.DATE)
             val selection = if (sinceMillis != null) "date > ?" else null
@@ -30,7 +29,7 @@ object SmsReader {
                     val address = cursor.getString(addrIdx)
                     val body = cursor.getString(bodyIdx)
                     val date = cursor.getLong(dateIdx)
-                    list.add(SmsRaw(id, address, body, date))
+                    list.add(SmsMessageData(id, address, body, date))
                 }
             }
             list

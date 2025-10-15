@@ -41,6 +41,8 @@ android {
 }
 
 dependencies {
+    implementation ("androidx.datastore:datastore:1.1.0") // or newer
+    implementation ("androidx.datastore:datastore-preferences:1.1.0")
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     implementation("androidx.compose.material:material")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")

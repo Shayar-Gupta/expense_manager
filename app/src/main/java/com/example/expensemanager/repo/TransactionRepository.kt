@@ -3,7 +3,7 @@ package com.example.expensemanager.repo
 import android.content.Context
 import com.example.expensemanager.data.TransactionDao
 import com.example.expensemanager.data.TransactionEntity
-import com.example.expensemanager.parser.Parser
+import com.example.expensemanager.parser.SmsParser
 import com.example.expensemanager.sms.SmsReader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -23,7 +23,7 @@ class TransactionRepository(private val dao: TransactionDao) {
             var inserted = 0
             for (sms in msgs) {
                 try {
-                    val parsed = SmsParser.parse(sms) ?: continue
+                    val parsed = SmsParser.parseSmsToTransaction(sms) ?: continue
                     val exists = dao.exists(parsed.messageId)
                     if (!exists) {
                         val id = dao.insert(parsed)

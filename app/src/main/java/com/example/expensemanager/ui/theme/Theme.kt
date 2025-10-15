@@ -1,18 +1,22 @@
-package com.example.composeexpense.ui.theme
+package com.example.expensemanager.ui.theme
 
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.MaterialTheme
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.darkColors
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 
 private val LightColors = lightColors(
-    primary = androidx.compose.ui.graphics.Color(0xFF0F9D58),
-    surface = androidx.compose.ui.graphics.Color.White
+    primary = Color(0xFF0F9D58),
+    surface = Color.White
 )
 
 private val DarkColors = darkColors(
-    primary = androidx.compose.ui.graphics.Color(0xFF0F9D58),
-    surface = androidx.compose.ui.graphics.Color(0xFF121212)
+    primary = Color(0xFF0F9D58),
+    surface = Color(0xFF121212)
 )
 
 @Composable
